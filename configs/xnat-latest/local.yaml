@@ -1,0 +1,83 @@
+# xnat-release/local.yaml
+
+# unique name for the VM
+name: xnat-local-release
+
+# site name reflects VM name (requires underscores instead of hyphens)
+site: XNAT_LOCAL_RELEASE
+
+# email address for server admin
+admin: your@emailhere.edu
+
+# FQDN or IP address of mail server that will handle outgoing messages
+smtp:  localhost
+
+# unique IP address for the VM
+vm_ip: 192.168.56.101
+
+# http or https? (used for siteUrl)
+protocol: https
+
+# Update the box if a new version is available
+update_box: true
+
+# Update the VirtualBox guest additions in the guest vm?
+update_vbguest: true
+
+# Update the OS and software packages in the guest vm?
+update_vm: true
+
+# siteUrl - *FULL* URL with protocol
+#site_url: https://192.168.56.101
+
+# You can override the URL settings to download from another source, e.g. a build server.
+# xnat_url:     https://api.bitbucket.org/2.0/repositories/xnatdev/xnat-web/downloads/xnat-web-1.8.4.war
+
+## PIPELINE ENGINE ##
+
+# Pipeline URL or source folder is optional. If no value is specified
+# for pipeline_src or pipeline_url, the pipeline engine won't be installed.
+# As of the 1.8.0 release of XNAT, the pipeline engine is no longer required,
+# but can be optionally installed.
+#
+# pipeline_src: ../path/to/pipeline/source/on/host
+# pipeline_url: https://download.xnat.org/pipeline/xnat-pipeline-1.8.4.zip
+
+## PORT FORWARDING ##
+#
+# Port forwarding from guest to host can be specified in the
+# 'forwards' property. The ports are specified in a simple
+# map in the form <guest>: <host>, so that 8000: 8001 means
+# that port 8000 on the guest VM is forwarded to port 8001 on
+# the host. The sample below shows how you can access your
+# XNAT Vagrant VM through the host machine using https and
+# the standard XNAT debugger port.
+#
+#forwards:
+#  443: 443
+#  8000: 8000
+
+## SHARED FOLDERS ##
+
+# Specify additional shares in a 'shares' property
+ram: 8192
+#shares:
+#  './shared':                      # path to local folder on host
+#    - '/shared'                    # path to folder in VM
+#    - ['fmode=644','dmode=755']    # (optional) 'mount_options' array
+# specify additional shares in a 'shares' property
+
+#
+# Pre-configure the user home folder by sharing a folder locally as the
+# folder /data/XNAT_USER/home. See the README.md for more information on
+# configuring this home directory mapping. Failure to set this up properly
+# can result in disabling the ability to ssh into the VM.
+
+#  './home':
+#    - '/data/xnat/home'
+#    - ['fmode=644','dmode=755']
+#  './home/.ssh':
+#    - '/data/xnat/home/.ssh'
+#    - ['fmode=600','dmode=700']
+#
+
